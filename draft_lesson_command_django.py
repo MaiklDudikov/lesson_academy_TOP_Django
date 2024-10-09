@@ -1,6 +1,8 @@
-print("lesson academy TOP")
+print("first commands Django")
+
 # 1. pip install django
 # 2. django-admin startproject first_project
+
 # 3. cd first_project
 # 4. python manage.py runserver
 
