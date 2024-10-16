@@ -21,5 +21,11 @@ print("first commands Django")
 # 7. python manage.py createsuperuser (mishawin11/12345678)
 # 8. зарегистрировать таблицу в admin.py
 
-# Исправление blog_project/urls.py и blog/urls.py
+# Исправление first_project/urls.py и hello/urls.py
 
+# 9. Создание представлений "views" (hello/views.py)
+# 10. Настройка URL-адресов "маршруты для представлений" (hello/urls.py и first_project/urls.py)
+# 11. Создание форм (hello/forms.py)
+# 12. Создание шаблонов (hello/templates/hello/post_list.html
+
+# 13. python manage.py runserver
