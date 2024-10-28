@@ -5,18 +5,35 @@
     <title>Academy TOP</title>
 </head>
 <body>
-    <h2>User form</h2>
-    <form method="post" action="postuser/">
+    <form method="POST">
         {% csrf_token %}
-        <p>Name : <input name="name"/></p>
-        <p>Age : <input name="age" type="number"/></p>
-        <p>
-            Languages :<br/><br/>
-            <input name="languages"/><br/><br/>
-            <input name="languages"/><br/><br/>
-            <input name="languages"/><br/>
-        </p>
-        <input type="submit" value="Send"/>
-    </form>
+    <table>
+        {{ form }}
+    </table>
+    <input type="submit" value="Send" >
+</form>
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <meta charset="utf-8" />-->
+<!--    <title>Academy TOP</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h2>User form</h2>-->
+<!--    <form method="post" action="postuser/">-->
+<!--        {% csrf_token %}-->
+<!--        <p>Name : <input name="name"/></p>-->
+<!--        <p>Age : <input name="age" type="number"/></p>-->
+<!--        <p>-->
+<!--            Languages :<br/><br/>-->
+<!--            <input name="languages"/><br/><br/>-->
+<!--            <input name="languages"/><br/><br/>-->
+<!--            <input name="languages"/><br/>-->
+<!--        </p>-->
+<!--        <input type="submit" value="Send"/>-->
+<!--    </form>-->
+<!--</body>-->
+<!--</html>-->
