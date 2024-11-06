@@ -1,20 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import UserForm
+from .forms import PersonForm
 
 
 def index(request):
-    if request.method == "POST":
-        name = request.POST.get("name")
-        age = request.POST.get("age")
-        return HttpResponse(f"<h2>Привет, {name}, твой возраст : {age}</h2>")
-    else:
-        userform = UserForm()
-        return render(request, "hello/index.html", {"form": userform})
+    return render(request, 'hello/index.html')
 
 
 # def index(request):
-#     return render(request, 'hello/index.html')
+#     if request.method == "POST":
+#         name = request.POST.get("name")
+#         age = request.POST.get("age")
+#         return HttpResponse(f"<h2>Привет, {name}, твой возраст : {age}</h2>")
+#     else:
+#         userform = UserForm()
+#         return render(request, "hello/index.html", {"form": userform})
 
 
 # def postuser(request):

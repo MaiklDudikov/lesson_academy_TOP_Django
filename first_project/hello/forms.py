@@ -1,6 +1,8 @@
 from django import forms
+from .models import Person
 
 
-class UserForm(forms.Form):
-    name = forms.CharField()
-    age = forms.IntegerField()
+class PersonForm(forms.ModelForm):
+    class Meta:
+        model = Person
+        fields = ['name', 'age']
