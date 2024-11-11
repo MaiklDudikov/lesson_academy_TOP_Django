@@ -1,29 +1,19 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from .forms import PersonForm
+from .models import Order
+from datetime import datetime
 
+# добавление начальных данных
+if Order.objects.count() == 0:
+    Order.objects.create(datetime=datetime(2021, 12, 26, 11, 25, 34))
+    Order.objects.create(datetime=datetime(2022, 5, 12, 12, 25, 34))
+    Order.objects.create(datetime=datetime(2022, 5, 22, 13, 25, 34))
+    Order.objects.create(datetime=datetime(2022, 8, 19, 14, 25, 34))
 
-def index(request):
-    return render(request, 'hello/index.html')
+# получаем заказы, сделанные в 5-м месяце
+orders = Order.objects.filter(datetime__month=5)
+for order in orders:
+    print(order.datetime)
 
-
-# def index(request):
-#     if request.method == "POST":
-#         name = request.POST.get("name")
-#         age = request.POST.get("age")
-#         return HttpResponse(f"<h2>Привет, {name}, твой возраст : {age}</h2>")
-#     else:
-#         userform = UserForm()
-#         return render(request, "hello/index.html", {"form": userform})
-
-
-# def postuser(request):
-#     # получаем из данных запроса POST отправленные через форму данные
-#     name = request.POST.get("name", "Undefined")
-#     age = request.POST.get("age", 1)
-#     langs = request.POST.getlist("languages", ["python"])
-#
-#     return HttpResponse(f"""
-#                 <div>Name : {name}<br>  Age : {age}</div><br>
-#                 <div>Languages : {langs}</div>
-#             """)
+# получаем заказы, сделанные после 5-го месяца
+orders = Order.objects.filter(datetime__month__gt=5)
+for order in orders:
+    print(order.datetime)
