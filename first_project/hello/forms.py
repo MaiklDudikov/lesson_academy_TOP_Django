@@ -1,8 +1,8 @@
 from django import forms
-from .models import Order
+from .models import Person
 
 
 class PersonForm(forms.ModelForm):
     class Meta:
-        model = Order
-        fields = ['datetime']
+        model = Person
+        fields = ['name', 'age']

@@ -5,35 +5,31 @@
     <title>Academy TOP</title>
 </head>
 <body>
-    <form method="POST">
+    <form method="POST" action="create/">
         {% csrf_token %}
+        <p>
+            <label>Введите имя</label><br>
+            <input type="text" name="name" />
+        </p>
+        <p>
+            <label>Введите возраст</label><br>
+            <input type="number" name="age" />
+        </p>
+        <input type="submit" value="Сохранить" >
+    </form>
+    {% if people.count > 0 %}
+    <h2>Список пользователей</h2>
     <table>
-        {{ form }}
+        <thead><th>Id</th><th>Имя</th><th>Возраст</th><th></th></thead>
+        {% for person in people %}
+        <tr>
+            <td>{{ person.id }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+            <td><a href="edit/{{person.id}}">Изменить</a> | <a href="delete/{{person.id}}">Удалить</a></td>
+        </tr>
+        {% endfor %}
     </table>
-    <input type="submit" value="Send" >
-</form>
+    {% endif %}
 </body>
 </html>
-
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-<!--    <meta charset="utf-8" />-->
-<!--    <title>Academy TOP</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--    <h2>User form</h2>-->
-<!--    <form method="post" action="postuser/">-->
-<!--        {% csrf_token %}-->
-<!--        <p>Name : <input name="name"/></p>-->
-<!--        <p>Age : <input name="age" type="number"/></p>-->
-<!--        <p>-->
-<!--            Languages :<br/><br/>-->
-<!--            <input name="languages"/><br/><br/>-->
-<!--            <input name="languages"/><br/><br/>-->
-<!--            <input name="languages"/><br/>-->
-<!--        </p>-->
-<!--        <input type="submit" value="Send"/>-->
-<!--    </form>-->
-<!--</body>-->
-<!--</html>-->

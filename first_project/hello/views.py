@@ -1,19 +1,45 @@
-from .models import Order
-from datetime import datetime
+from django.shortcuts import render
+from django.http import HttpResponseRedirect, HttpResponseNotFound
+from .models import Person
 
-# добавление начальных данных
-if Order.objects.count() == 0:
-    Order.objects.create(datetime=datetime(2021, 12, 26, 11, 25, 34))
-    Order.objects.create(datetime=datetime(2022, 5, 12, 12, 25, 34))
-    Order.objects.create(datetime=datetime(2022, 5, 22, 13, 25, 34))
-    Order.objects.create(datetime=datetime(2022, 8, 19, 14, 25, 34))
 
-# получаем заказы, сделанные в 5-м месяце
-orders = Order.objects.filter(datetime__month=5)
-for order in orders:
-    print(order.datetime)
+# получение данных из бд
+def index(request):
+    people = Person.objects.all()
+    return render(request, "hello/index.html", {"people": people})
 
-# получаем заказы, сделанные после 5-го месяца
-orders = Order.objects.filter(datetime__month__gt=5)
-for order in orders:
-    print(order.datetime)
+
+# сохранение данных в бд
+def create(request):
+    if request.method == "POST":
+        person = Person()
+        person.name = request.POST.get("name")
+        person.age = request.POST.get("age")
+        person.save()
+    return HttpResponseRedirect("/")
+
+
+# изменение данных в бд
+def edit(request, id):
+    try:
+        person = Person.objects.get(id=id)
+
+        if request.method == "POST":
+            person.name = request.POST.get("name")
+            person.age = request.POST.get("age")
+            person.save()
+            return HttpResponseRedirect("/")
+        else:
+            return render(request, "hello/edit.html", {"person": person})
+    except Person.DoesNotExist:
+        return HttpResponseNotFound("<h2>Person not found</h2>")
+
+
+# удаление данных из бд
+def delete(request, id):
+    try:
+        person = Person.objects.get(id=id)
+        person.delete()
+        return HttpResponseRedirect("/")
+    except Person.DoesNotExist:
+        return HttpResponseNotFound("<h2>Person not found</h2>")
