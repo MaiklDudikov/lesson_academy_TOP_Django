@@ -8,11 +8,11 @@
     <form method="POST" action="create/">
         {% csrf_token %}
         <p>
-            <label>Введите имя</label><br>
+            <label>Введите имя :</label><br>
             <input type="text" name="name" />
         </p>
         <p>
-            <label>Введите возраст</label><br>
+            <label>Введите возраст :</label><br>
             <input type="number" name="age" />
         </p>
         <input type="submit" value="Сохранить" >
@@ -21,6 +21,7 @@
     <h2>Список пользователей</h2>
     <table>
         <thead><th>Id</th><th>Имя</th><th>Возраст</th><th></th></thead>
+        <br>
         {% for person in people %}
         <tr>
             <td>{{ person.id }}</td>
