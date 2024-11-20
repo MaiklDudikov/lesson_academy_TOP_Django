@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Academy TOP</title>
+</head>
+<body>
+    <h2>Список товаров</h2>
+    <a href="create/">Добавление товара</a><br>
+    <br>
+    <table>
+        <thead><th>Название</th><th>Цена</th><th>Компания</th><th></th></thead>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.company.name }}</td>
+            <td>
+                <a href="edit/{{product.id}}">Изменить</a> | <a href="delete/{{product.id}}">Удалить</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
